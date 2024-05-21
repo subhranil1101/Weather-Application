@@ -1,9 +1,8 @@
-var city;
 const getWeather = async (city) => {
+      cityName.innerHTML = city;
       await fetch("http://api.weatherapi.com/v1/current.json?key=40e98bc0be2f41beb24164538241505 &q=" + city + "&aqi=yes")
             .then(response => response.json())
             .then((response) => {
-                  cityName.innerHTML = response.location.name;
 
                   temp.innerHTML = response.current.temp_c;
                   humidity.innerHTML = response.current.humidity + "%";
@@ -27,6 +26,18 @@ const getWeather = async (city) => {
 }
 
 getWeather('kolkata');
+
+
+
+const inputBtn = document.getElementById('city');
+const submitBtn = document.getElementById('submit');
+submitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      city = inputBtn.value;
+      getWeather(city);
+});
+
+
 
 
 var city2;
